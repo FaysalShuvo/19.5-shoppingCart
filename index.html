@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Cart</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <section>
+      <div class="container">
+        <div class="cart">
+          <div class="col-md-12 col-lg-10 mx-auto">
+            <div class="cart-item">
+              <div class="row">
+                <div class="col-md-7 center-item">
+                  <img src="images/product-1.png" alt="" />
+                  <h5>iPhone 11 128GB Black</h5>
+                </div>
+
+                <div class="col-md-5 center-item">
+                  <div class="input-group number-spinner">
+                    <button id="itemRemove" class="btn btn-default">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <input
+                      id="itemNumber"
+                      type="text"
+                      class="form-control text-center"
+                      value="1"
+                    />
+                    <button id="itemAdded" class="btn btn-default">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <h5>$<span id="phonePrice">1219</span></h5>
+                  <img src="images/remove.png" alt="" class="remove-item" />
+                </div>
+              </div>
+            </div>
+            <!-- phone -->
+            <div class="cart-item">
+              <div class="row">
+                <div class="col-md-7 center-item mx-auto">
+                  <img src="images/product-2.png" alt="" />
+                  <h5>iPhone 11 Silicone Case - Black</h5>
+                </div>
+                <div class="col-md-5 center-item">
+                  <div id="numberOfItem" class="input-group number-spinner">
+                    <button class="btn btn-default">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <input
+                      type="text"
+                      class="form-control text-center"
+                      value="1"
+                    />
+                    <button class="btn btn-default">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <h5>$59</h5>
+                  <img src="images/remove.png" alt="" class="remove-item" />
+                </div>
+              </div>
+            </div>
+            <!-- phone case -->
+            <div class="cart-item">
+              <div class="row">
+                <div class="col-md-8">
+                  <h5>Subtotal:</h5>
+                  <h5>Tax:</h5>
+                  <h5>Total:</h5>
+                </div>
+
+                <div class="col-md-4 status">
+                  <h5>$1,278</h5>
+                  <h5>$0</h5>
+                  <h5>$1,278</h5>
+                </div>
+              </div>
+            </div>
+
+            <!-- total section -->
+            <div class="col-md-12 pt-4 pb-4">
+              <button type="button" class="btn btn-success check-out">
+                Check Out
+              </button>
+            </div>
+            <!-- checkout -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- script -->
+    <script>
+      //  add Item Event Handler
+      const itemAddedBtn = document.getElementById("itemAdded");
+      itemAddedBtn.addEventListener("click", function () {
+        itemAmount("itemNumber", 1);
+
+        // testing adding price
+        const itemsAmount = document.getElementById("itemNumber").value;
+        const totalItemNumber = parseFloat(itemsAmount);
+        const priceOfPhone = document.getElementById("phonePrice").innerText;
+        const phonePriceNumber = parseFloat(priceOfPhone);
+        const totalPriceOfPhone = totalItemNumber * phonePriceNumber;
+        document.getElementById("phonePrice").innerText = totalPriceOfPhone;
+
+        // const totalPrice = totalItemNumber * phonePrice;
+        // document.getElementById("phonePrice").innerText = totalPrice;
+      });
+      // remove Item Event Handler
+      const itemRemoveBtn = document.getElementById("itemRemove");
+      itemRemoveBtn.addEventListener("click", function () {
+        itemAmount("itemNumber", -1);
+      });
+
+      // all the function are under this comment don't go there!!
+      function itemAmount(id, items) {
+        const itemNumber = document.getElementById(id).value;
+        const totalItemAmount = parseFloat(itemNumber);
+        const totalItem = totalItemAmount + items;
+        document.getElementById(id).value = totalItem;
+      }
+    </script>
+  </body>
+</html>
